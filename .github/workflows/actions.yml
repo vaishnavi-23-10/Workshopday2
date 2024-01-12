@@ -2,23 +2,13 @@ name: This is a github action
 run-name: this is the run name
 on: [push]
 jobs:     
- test:
+  node:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: sleep 3s && echo test
-
- build: 
-    runs-on: ubuntu-latest
-    needs: [test]
-    steps:
-      - name: build
-        run: sleep 5s && echo build
-
- deploy:
-   runs-on: ubuntu-latest
-   needs: [build]
-   steps:
-     - name: build
-       run: sleep 20s && echo build
+     - name: setup node.js
+       uses: actions/setup-node@v4
+       with:
+         node-version: '21.5.0'
+     - run: node --version
+     
     
